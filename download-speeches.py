@@ -1,4 +1,5 @@
-import json
+import csv
+import datetime
 import multiprocessing
 import logging
 
@@ -29,7 +30,11 @@ def get_soup(link):
 def scrape_speech(item_html):
     """Returns a dictionary of speech data from the media post item"""
     item_soup = BeautifulSoup(item_html, "html.parser")
+
     date = item_soup.find("p", class_="media-post-date").text.strip()
+    date = datetime.datetime.strptime(date, "Posted on %b %d, %Y")
+    date = date.strftime("%Y-%m-%d")
+
     title_tag = item_soup.find("a", class_="media-post-title")
     title = title_tag.text.strip()
     link = title_tag["href"]
@@ -41,7 +46,13 @@ def scrape_speech(item_html):
         logging.error(f"Error scraping speech '%s'. Skipping...", title)
         return None
 
-    content = soup.find("div", class_="media-post-page-content").text.strip()
+    content = soup.find("div", class_="media-post-page-content")
+
+    if not content:
+        logging.error(f"Content not found for '%s'. Skipping...", title)
+        return None
+
+    content = content.text.strip()
 
     return {
         "title": title,
@@ -64,7 +75,10 @@ if __name__ == "__main__":
             logging.error(f"Error scraping page %s. Skipping...", page_count)
             continue  # Skip this page if there's an error.
 
-        items = [str(item) for item in page_soup.find_all("div", class_="media-post-item")]
+        items = [
+            str(item)
+            for item in page_soup.find_all("div", class_="media-post-item")
+        ]
 
         with multiprocessing.Pool() as pool:
             results = pool.map(scrape_speech, items)
@@ -77,6 +91,7 @@ if __name__ == "__main__":
 
         page_count += 1
 
-    with open("speeches.json", "w") as f:
-        logging.info(f"Saving speeches to speeches.json...")
-        json.dump(speeches, f, indent=4)
+    with open("speeches.csv", "w", encoding="utf-8") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=speeches[0].keys())
+        writer.writeheader()
+        writer.writerows(speeches)
