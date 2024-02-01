@@ -3,7 +3,6 @@ asttokens==2.4.1
 beautifulsoup4==4.12.3
 blis==0.7.11
 bs4==0.0.2
-calamanCy==0.1.2
 catalogue==2.0.10
 certifi==2023.11.17
 charset-normalizer==3.3.2
@@ -12,11 +11,14 @@ cloudpathlib==0.16.0
 colorama==0.4.6
 comm==0.2.1
 confection==0.1.4
+contourpy==1.2.0
+cycler==0.12.1
 cymem==2.0.8
 debugpy==1.8.0
 decorator==5.1.1
 en-core-web-md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.7.1/en_core_web_md-3.7.1-py3-none-any.whl#sha256=6a0f857a2b4d219c6fa17d455f82430b365bf53171a2d919b9376e5dc9be032e
 executing==2.0.1
+fonttools==4.47.2
 idna==3.6
 ipykernel==6.29.0
 ipython==8.20.0
@@ -24,8 +26,10 @@ jedi==0.19.1
 Jinja2==3.1.3
 jupyter_client==8.6.0
 jupyter_core==5.7.1
+kiwisolver==1.4.5
 langcodes==3.3.0
 MarkupSafe==2.1.4
+matplotlib==3.8.2
 matplotlib-inline==0.1.6
 murmurhash==1.0.10
 nest-asyncio==1.6.0
@@ -33,6 +37,7 @@ numpy==1.26.3
 packaging==23.2
 pandas==2.2.0
 parso==0.8.3
+pillow==10.2.0
 platformdirs==4.2.0
 preshed==3.0.9
 prompt-toolkit==3.0.43
@@ -41,6 +46,7 @@ pure-eval==0.2.2
 pydantic==2.6.0
 pydantic_core==2.16.1
 Pygments==2.17.2
+pyparsing==3.1.1
 python-dateutil==2.8.2
 pytz==2023.4
 pywin32==306
@@ -56,7 +62,6 @@ spacy-loggers==1.0.5
 srsly==2.4.8
 stack-data==0.6.3
 thinc==8.2.2
-tl-calamancy-md @ https://huggingface.co/ljvmiranda921/tl_calamancy_md/resolve/main/tl_calamancy_md-any-py3-none-any.whl#sha256=01177de062867e8b4eeaef34254658085a101aa78fa3b0a0b72d7b86ebf767aa
 tornado==6.4
 tqdm==4.66.1
 traitlets==5.14.1
@@ -67,3 +72,4 @@ urllib3==2.2.0
 wasabi==1.1.2
 wcwidth==0.2.13
 weasel==0.3.4
+wordcloud==1.9.3
